@@ -1,21 +1,20 @@
 import { useWeb3React } from "@web3-react/core";
+import connectWalletImg from "img/ic_wallet_24.svg";
+import { useCallback, useEffect } from "react";
 import AddressDropdown from "../AddressDropdown/AddressDropdown";
 import ConnectWalletButton from "../Common/ConnectWalletButton";
-import React, { useCallback, useEffect } from "react";
 import { HeaderLink } from "./HeaderLink";
-import connectWalletImg from "img/ic_wallet_24.svg";
 
-import "./Header.css";
-import { isHomeSite, getAccountUrl } from "lib/legacy";
-import cx from "classnames";
 import { Trans } from "@lingui/macro";
-import NetworkDropdown from "../NetworkDropdown/NetworkDropdown";
-import LanguagePopupHome from "../NetworkDropdown/LanguagePopupHome";
 import { ARBITRUM, ARBITRUM_TESTNET, AVALANCHE, AVALANCHE_FUJI, getChainName } from "config/chains";
-import { switchNetwork } from "lib/wallets";
-import { useChainId } from "lib/chains";
 import { isDevelopment } from "config/env";
 import { getIcon } from "config/icons";
+import { useChainId } from "lib/chains";
+import { getAccountUrl, isHomeSite } from "lib/legacy";
+import { switchNetwork } from "lib/wallets";
+import LanguagePopupHome from "../NetworkDropdown/LanguagePopupHome";
+import NetworkDropdown from "../NetworkDropdown/NetworkDropdown";
+import "./Header.css";
 
 type Props = {
   openSettings: () => void;
@@ -89,7 +88,7 @@ export function AppHeaderUser({
   if (!active || !account) {
     return (
       <div className="App-header-user">
-        <div className={cx("App-header-trade-link", { "homepage-header": isHomeSite() })}>
+        {/* <div className={cx("App-header-trade-link", { "homepage-header": isHomeSite() })}>
           <HeaderLink
             className="default-btn"
             to="/trade"
@@ -98,20 +97,20 @@ export function AppHeaderUser({
           >
             {isHomeSite() ? <Trans>Launch App</Trans> : <Trans>Trade</Trans>}
           </HeaderLink>
-        </div>
+        </div> */}
 
         {showConnectionOptions ? (
           <>
             <ConnectWalletButton onClick={() => setWalletModalVisible(true)} imgSrc={connectWalletImg}>
               {small ? <Trans>Connect</Trans> : <Trans>Connect Wallet</Trans>}
             </ConnectWalletButton>
-            <NetworkDropdown
+            {/* <NetworkDropdown
               small={small}
               networkOptions={NETWORK_OPTIONS}
               selectorLabel={selectorLabel}
               onNetworkSelect={onNetworkSelect}
               openSettings={openSettings}
-            />
+            /> */}
           </>
         ) : (
           <LanguagePopupHome />

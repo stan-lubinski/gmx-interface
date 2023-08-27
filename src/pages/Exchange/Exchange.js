@@ -1,57 +1,55 @@
-import React, { useEffect, useState, useMemo, useCallback, forwardRef, useImperativeHandle } from "react";
-import { Trans, t, Plural } from "@lingui/macro";
+import { Plural, Trans, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
-import useSWR from "swr";
 import { ethers } from "ethers";
-import cx from "classnames";
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useState } from "react";
+import useSWR from "swr";
 
+import { getConstant, getExplorerUrl } from "config/chains";
+import { approvePlugin, cancelMultipleOrders, useExecutionFee } from "domain/legacy";
 import {
   BASIS_POINTS_DIVISOR,
-  MARGIN_FEE_BASIS_POINTS,
-  SWAP,
   LONG,
+  MARGIN_FEE_BASIS_POINTS,
   SHORT,
+  SWAP,
   USD_DECIMALS,
-  getPositionKey,
-  getPositionContractKey,
   getDeltaStr,
-  useAccountOrders,
-  getPageTitle,
   getFundingFee,
+  getPageTitle,
+  getPositionContractKey,
+  getPositionKey,
+  useAccountOrders,
 } from "lib/legacy";
-import { getConstant, getExplorerUrl } from "config/chains";
-import { approvePlugin, useExecutionFee, cancelMultipleOrders } from "domain/legacy";
 
 import { getContract } from "config/contracts";
 
 import Reader from "abis/ReaderV2.json";
-import VaultV2 from "abis/VaultV2.json";
 import Router from "abis/Router.json";
 import Token from "abis/Token.json";
+import VaultV2 from "abis/VaultV2.json";
 
-import Checkbox from "components/Checkbox/Checkbox";
-import SwapBox from "components/Exchange/SwapBox";
-import ExchangeTVChart, { getChartToken } from "components/Exchange/ExchangeTVChart";
-import PositionsList from "components/Exchange/PositionsList";
-import OrdersList from "components/Exchange/OrdersList";
-import TradeHistory from "components/Exchange/TradeHistory";
-import ExchangeWalletTokens from "components/Exchange/ExchangeWalletTokens";
 import ExchangeBanner from "components/Exchange/ExchangeBanner";
+import ExchangeTVChart from "components/Exchange/ExchangeTVChart";
+import ExchangeWalletTokens from "components/Exchange/ExchangeWalletTokens";
+import OrdersList from "components/Exchange/OrdersList";
+import PositionsList from "components/Exchange/PositionsList";
+import SwapBox from "components/Exchange/SwapBox";
+import TradeHistory from "components/Exchange/TradeHistory";
 import Tab from "components/Tab/Tab";
-import Footer from "components/Footer/Footer";
 
-import "./Exchange.css";
-import { contractFetcher } from "lib/contracts";
-import { useInfoTokens } from "domain/tokens";
-import { useLocalStorageByChainId, useLocalStorageSerializeKey } from "lib/localStorage";
-import { helperToast } from "lib/helperToast";
-import { getTokenInfo } from "domain/tokens/utils";
-import { bigNumberify, formatAmount } from "lib/numbers";
-import { getToken, getTokenBySymbol, getTokens, getWhitelistedTokens } from "config/tokens";
-import { useChainId } from "lib/chains";
-import ExternalLink from "components/ExternalLink/ExternalLink";
+import { getChartToken } from "components/Exchange/ExchangeTVChart";
 import UsefulLinks from "components/Exchange/UsefulLinks";
+import ExternalLink from "components/ExternalLink/ExternalLink";
+import { getToken, getTokenBySymbol, getTokens, getWhitelistedTokens } from "config/tokens";
+import { useInfoTokens } from "domain/tokens";
+import { getTokenInfo } from "domain/tokens/utils";
+import { useChainId } from "lib/chains";
+import { contractFetcher } from "lib/contracts";
+import { helperToast } from "lib/helperToast";
+import { useLocalStorageByChainId, useLocalStorageSerializeKey } from "lib/localStorage";
+import { bigNumberify, formatAmount } from "lib/numbers";
 import { getLeverage, getLeverageStr } from "lib/positions/getLeverage";
+import "./Exchange.css";
 const { AddressZero } = ethers.constants;
 
 const PENDING_POSITION_VALID_DURATION = 600 * 1000;
@@ -520,6 +518,14 @@ export const Exchange = forwardRef((props, ref) => {
     infoTokens
   );
 
+  // const fromToken = getTokenInfo(infoTokens, fromTokenAddress);
+  // const toToken = getTokenInfo(infoTokens, toTokenAddress);
+
+  // useEffect(() => {
+  //   const tmp = getChartToken(swapOption, fromToken, toToken, chainId);
+  //   setChartToken(tmp);
+  // }, [swapOption, fromToken, toToken, chainId]);
+
   useEffect(() => {
     const fromToken = getTokenInfo(infoTokens, fromTokenAddress);
     const toToken = getTokenInfo(infoTokens, toTokenAddress);
@@ -708,6 +714,10 @@ export const Exchange = forwardRef((props, ref) => {
   const [isPositionRouterApproving, setIsPositionRouterApproving] = useState(false);
   const [isCancelMultipleOrderProcessing, setIsCancelMultipleOrderProcessing] = useState(false);
   const [cancelOrderIdList, setCancelOrderIdList] = useState([]);
+  // const [chartToken, setChartToken] = useState({
+  //   maxPrice: null,
+  //   minPrice: null,
+  // });
 
   const onMultipleCancelClick = useCallback(
     async function () {
@@ -820,7 +830,7 @@ export const Exchange = forwardRef((props, ref) => {
             type="inline"
             className="Exchange-list-tabs"
           />
-          <div className="align-right Exchange-should-show-position-lines">
+          {/* <div className="align-right Exchange-should-show-position-lines">
             {renderCancelOrderButton()}
             <Checkbox
               isChecked={savedShouldShowPositionLines}
@@ -831,7 +841,7 @@ export const Exchange = forwardRef((props, ref) => {
                 <Trans>Chart positions</Trans>
               </span>
             </Checkbox>
-          </div>
+          </div> */}
         </div>
         {listSection === POSITIONS && (
           <PositionsList
@@ -909,6 +919,12 @@ export const Exchange = forwardRef((props, ref) => {
     setFromTokenAddress(swapOption, token.address);
   };
 
+  // const onSelectToken = (token) => {
+  //   const tmp = getTokenInfo(infoTokens, token.address);
+  //   setChartToken(tmp);
+  //   setToTokenAddress(swapOption, token.address);
+  // };
+
   const renderChart = () => {
     return (
       <ExchangeTVChart
@@ -930,10 +946,14 @@ export const Exchange = forwardRef((props, ref) => {
       {showBanner && <ExchangeBanner hideBanner={hideBanner} />}
       <div className="Exchange-content">
         <div className="Exchange-left">
-          {renderChart()}
-          <div className="Exchange-lists large">{getListSection()}</div>
-        </div>
-        <div className="Exchange-right">
+          {/* <ChartTokenSelector
+                chainId={chainId}
+                selectedToken={chartToken}
+                swapOption={swapOption}
+                infoTokens={infoTokens}
+                onSelectToken={onSelectToken}
+                className="chart-token-selector"
+              /> */}
           <SwapBox
             pendingPositions={pendingPositions}
             setPendingPositions={setPendingPositions}
@@ -987,10 +1007,14 @@ export const Exchange = forwardRef((props, ref) => {
             </div>
           </div>
         </div>
+        <div className="Exchange-right">
+          {renderChart()}
+          <div className="Exchange-lists large">{getListSection()}</div>
+        </div>
         <div className="Exchange-lists small">{getListSection()}</div>
         <UsefulLinks className="Useful-links-exchange" />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 });

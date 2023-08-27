@@ -1,17 +1,17 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { TV_CHART_RELOAD_TIMESTAMP_KEY, TV_SAVE_LOAD_CHARTS_KEY } from "config/localStorage";
-import { useLocalStorage, useMedia } from "react-use";
-import { defaultChartProps, DEFAULT_PERIOD, disabledFeaturesOnMobile } from "./constants";
-import useTVDatafeed from "domain/tradingview/useTVDatafeed";
-import { ChartData, IChartingLibraryWidget, IPositionLineAdapter } from "../../charting_library";
-import { getObjectKeyFromValue } from "domain/tradingview/utils";
-import { SaveLoadAdapter } from "./SaveLoadAdapter";
-import { SUPPORTED_RESOLUTIONS, TV_CHART_RELOAD_INTERVAL } from "config/tradingview";
-import { isChartAvailabeForToken } from "config/tokens";
-import { TVDataProvider } from "domain/tradingview/TVDataProvider";
 import Loader from "components/Common/Loader";
-import { useLocalStorageSerializeKey } from "lib/localStorage";
+import { TV_CHART_RELOAD_TIMESTAMP_KEY, TV_SAVE_LOAD_CHARTS_KEY } from "config/localStorage";
+import { isChartAvailabeForToken } from "config/tokens";
+import { SUPPORTED_RESOLUTIONS, TV_CHART_RELOAD_INTERVAL } from "config/tradingview";
+import { TVDataProvider } from "domain/tradingview/TVDataProvider";
+import useTVDatafeed from "domain/tradingview/useTVDatafeed";
+import { getObjectKeyFromValue } from "domain/tradingview/utils";
 import { CHART_PERIODS } from "lib/legacy";
+import { useLocalStorageSerializeKey } from "lib/localStorage";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useLocalStorage, useMedia } from "react-use";
+import { ChartData, IChartingLibraryWidget, IPositionLineAdapter } from "../../charting_library";
+import { SaveLoadAdapter } from "./SaveLoadAdapter";
+import { DEFAULT_PERIOD, defaultChartProps, disabledFeaturesOnMobile } from "./constants";
 
 type ChartLine = {
   price: number;
@@ -62,11 +62,12 @@ export default function TVChartContainer({
           .setQuantity("")
           .setLineStyle(1)
           .setLineLength(1)
-          .setBodyFont(`normal 12pt "Relative", sans-serif`)
+          .setBodyFont(`normal 12pt "Freecam", sans-serif`)
+          .setQuantityFont(`normal 12pt "Freecam", sans-serif`)
           .setBodyTextColor("#fff")
-          .setLineColor("#3a3e5e")
-          .setBodyBackgroundColor("#3a3e5e")
-          .setBodyBorderColor("#3a3e5e");
+          .setLineColor("#14161a")
+          .setBodyBackgroundColor("#14161a")
+          .setBodyBorderColor("#14161a");
       }
     },
     [chartReady]
@@ -125,6 +126,7 @@ export default function TVChartContainer({
       symbol: symbolRef.current, // Using ref to avoid unnecessary re-renders on symbol change and still have access to the latest symbol
       datafeed: datafeed,
       theme: defaultChartProps.theme,
+      custom_font_family: defaultChartProps.custom_font_family,
       container: chartContainerRef.current,
       library_path: defaultChartProps.library_path,
       locale: defaultChartProps.locale,
@@ -148,7 +150,7 @@ export default function TVChartContainer({
     tvWidgetRef.current!.onChartReady(function () {
       setChartReady(true);
       tvWidgetRef.current!.applyOverrides({
-        "paneProperties.background": "#16182e",
+        "paneProperties.background": "#14161a",
         "paneProperties.backgroundType": "solid",
       });
       tvWidgetRef.current

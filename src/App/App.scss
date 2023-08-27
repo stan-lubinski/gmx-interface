@@ -20,26 +20,27 @@
 }
 
 .App-header.large {
-  height: 6.2rem;
-  backdrop-filter: blur(4px);
+  height: 100px;
+  // backdrop-filter: blur(4px);
   display: flex;
   justify-content: space-between;
   position: relative;
   padding-left: 3.2rem;
   padding-right: 3.2rem;
-  background: transparent 0% 0% no-repeat padding-box;
-  border-bottom: 1px solid #ffffff10;
+  background: var(--dark-blue-bg);
+  border: 0;
+  // border-bottom: 1px solid #ffffff10;
 }
 
-.App-header.large::after {
-  height: 1.3rem;
-  width: 100%;
-  content: " ";
-  background: transparent linear-gradient(180deg, #00000030 0%, #00000000 100%) 0% 0% no-repeat padding-box;
-  position: absolute;
-  bottom: -1.3rem;
-  left: 0;
-}
+// .App-header.large::after {
+//   height: 1.3rem;
+//   width: 100%;
+//   content: " ";
+//   background: transparent linear-gradient(180deg, #00000030 0%, #00000000 100%) 0% 0% no-repeat padding-box;
+//   position: absolute;
+//   bottom: -1.3rem;
+//   left: 0;
+// }
 
 .App-header.large .App-header-links {
   display: flex;
@@ -155,8 +156,8 @@
 .App-box-highlight,
 .App-box-solid {
   position: relative;
-  border-radius: 0.4rem;
-  background: #16182e;
+  border-radius: var(--border-radius-base);
+  background: var(--dark-blue-bg);
   font-size: var(--font-base);
 }
 
@@ -601,11 +602,20 @@ button.App-connect-wallet:hover {
 
 .App-header a.App-header-link-main,
 .App-header .App-header-link-main {
-  font-size: 1.7rem;
   padding: 1.5rem;
   margin-left: -1.5rem;
   display: flex;
   margin-right: 1.2rem;
+
+  h1 {
+    font-size: 28px;
+    line-height: 30px;
+    color: #fff;
+
+    .accent {
+      color: #2a26f0;
+    }
+  }
 }
 
 .App-header-link-main img {
@@ -643,16 +653,16 @@ button.App-connect-wallet:hover {
 .App-header-container-left a {
   padding: 1.8rem 1.7rem;
   display: block;
-  color: #a0a3c4;
+  color: #fff;
   font-size: var(--font-base);
   line-height: 1.8rem;
   font-weight: normal;
 }
 
-.App-header-container-left .a.active,
-.App-header-container-left a.active {
-  color: white;
-}
+// .App-header-container-left .a.active,
+// .App-header-container-left a.active {
+//   color: white;
+// }
 
 .Toastify {
   font-size: var(--font-sm);
@@ -1040,7 +1050,7 @@ button.App-button {
   background: #ffffff47 0% 0% no-repeat padding-box;
 }
 .Toastify__toast-body {
-  font: normal normal normal 1.4rem/1.6rem Relative;
+  font: normal normal normal 1.4rem/1.6rem Freecam;
   line-height: 2rem;
 }
 
@@ -1113,39 +1123,61 @@ button.App-button {
   padding: 0 3.1rem;
 }
 
-.App-slider .rc-slider-rail {
-  background: linear-gradient(90deg, #1e223d, #282d4a);
+.App-slider {
+  padding-bottom: 12px;
+  margin: 15px 0;
 }
 
-.App-slider .rc-slider-track {
-  background: linear-gradient(90deg, #2e3dcd, #2d42fc);
+.App-slider .rc-slider-track,
+.App-slider .rc-slider-rail {
+  background: var(--primary-btn-bg);
+  // top: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.App-slider .rc-slider-step {
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .App-slider .rc-slider-dot {
   border: none;
-  border-radius: 1px;
+  border-radius: 0;
   width: 2px;
+  height: 10px;
   margin-left: -1px;
-  background: #282d4a;
+  background: var(--primary-btn-bg);
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .App-slider .rc-slider-dot-active {
-  background: #3d51ff;
+  background: var(--primary-btn-bg);
 }
 
 .App-slider .rc-slider-handle {
-  background: #303652;
-  border: 2px solid #2d42fc;
+  background: white;
+  border: 2px solid var(--primary-btn-bg);
+  height: 10px;
+  width: 10px;
+  top: 50%;
 }
 
-.App-slider .rc-slider-handle:active {
-  box-shadow: 0 0 0.4rem 0.6rem rgba(45, 66, 252, 0.2);
+.App-slider .rc-slider-mark {
+  top: 15px;
 }
+
+// .App-slider .rc-slider-handle:active {
+//   box-shadow: 0 0 0.4rem 0.6rem rgba(45, 66, 252, 0.2);
+// }
 
 .App-slider .rc-slider-mark-text,
 .App-slider .rc-slider-mark-text-active {
   color: white;
-  opacity: 0.5;
+  // opacity: 0.5;
+  font-size: var(--font-sm);
+  line-height: 10px;
 }
 
 .App-slider .rc-slider-mark-text:hover,

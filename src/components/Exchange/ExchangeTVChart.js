@@ -1,18 +1,15 @@
-import React, { useEffect, useState, useRef, useMemo } from "react";
-import cx from "classnames";
-
-import { USD_DECIMALS, SWAP, INCREASE } from "lib/legacy";
-import { useChartPrices } from "domain/legacy";
-
-import ChartTokenSelector from "./ChartTokenSelector";
-import { getTokenInfo } from "domain/tokens/utils";
-import { formatAmount, numberWithCommas } from "lib/numbers";
-import { getToken, getTokens } from "config/tokens";
-import TVChartContainer from "components/TVChartContainer/TVChartContainer";
 import { t } from "@lingui/macro";
+import cx from "classnames";
+import TVChartContainer from "components/TVChartContainer/TVChartContainer";
 import { availableNetworksForChart } from "components/TVChartContainer/constants";
+import { getToken, getTokens } from "config/tokens";
+import { useChartPrices } from "domain/legacy";
+import { getTokenInfo } from "domain/tokens/utils";
 import { TVDataProvider } from "domain/tradingview/TVDataProvider";
+import { INCREASE, SWAP, USD_DECIMALS } from "lib/legacy";
+import { formatAmount, numberWithCommas } from "lib/numbers";
 import getLiquidationPrice from "lib/positions/getLiquidationPrice";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const PRICE_LINE_TEXT_WIDTH = 15;
 
@@ -300,7 +297,7 @@ export default function ExchangeTVChart(props) {
     <div className="ExchangeChart tv" ref={ref}>
       <div className="ExchangeChart-top App-box App-box-border">
         <div className="ExchangeChart-top-inner">
-          <div>
+          {/* <div>
             <div className="ExchangeChart-title">
               <ChartTokenSelector
                 chainId={chainId}
@@ -311,7 +308,7 @@ export default function ExchangeTVChart(props) {
                 className="chart-token-selector"
               />
             </div>
-          </div>
+          </div> */}
           <div>
             <div className="ExchangeChart-main-price">
               {chartToken.maxPrice && formatAmount(chartToken.maxPrice, USD_DECIMALS, 2, true)}

@@ -1,12 +1,20 @@
+@font-face {
+  font-family: "Freecam";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/freecam/freecam-v2.ttf");
+  /* src: local(""), url("fonts/freecam/freecam-v2.ttf") format("embedded-opentype"); */
+}
+
 .theme-dark:root {
-  --dark-blue-bg: #16182e;
+  --dark-blue-bg: #14161a;
 
   --tv-color-pane-background: var(--dark-blue-bg);
   --tv-color-platform-background: var(--dark-blue-bg);
   --tv-color-pane-background-secondary: var(--dark-blue-bg);
   --tv-color-toolbar-button-text-hover: #b2b5be;
   --tv-color-toolbar-button-background-hover: #1e223de6;
-  --tv-color-toolbar-button-text-active: #2962ff;
+  --tv-color-toolbar-button-text-active: #0094ff;
   --tv-color-toolbar-toggle-button-background-active: #3a3e5e;
   --tv-color-toolbar-toggle-button-background-active-hover: #3a3e5e;
   --tv-color-toolbar-button-background-expanded: var(--dark-blue-bg);
@@ -15,7 +23,7 @@
 
 html.theme-dark .chart-page {
   background-color: transparent;
-  font-family: "Relative", sans-serif;
+  font-family: "Freecam", sans-serif;
 }
 html.theme-dark .chart-container {
   border: none;
@@ -34,13 +42,13 @@ html.theme-dark .toggleButton-3zv4iS2j .background-3zv4iS2j:hover {
 }
 
 html.theme-dark .menuWrap-g78rwseC {
-  background-color: #20243f !important;
+  background-color: #14161a !important;
 }
 
 html.theme-dark .item-2IihgTnv:not(.isActive-2IihgTnv) {
   cursor: pointer;
-  background-color: #20243f !important;
-  color: #b2b5be !important;
+  background-color: #14161a !important;
+  color: #75787a !important;
 }
 
 html.theme-dark .item-2IihgTnv:not(.isActive-2IihgTnv):hover,
@@ -49,26 +57,26 @@ html.theme-dark .container-3Ywm3-oo.selected-3Ywm3-oo {
 }
 
 html.theme-dark .container-3Ywm3-oo.selected-3Ywm3-oo {
-  background-color: #2962ff !important;
+  background-color: #0094ff !important;
 }
 
 html.theme-dark .dialog-2AogBbC7 {
-  background-color: #20243f !important;
+  background-color: #14161a !important;
 }
 
 html.theme-dark .close-2sL5JydP {
-  color: #6f6e84 !important;
+  color: #75787a !important;
 }
 
 html.theme-dark .close-2sL5JydP:hover {
   background-color: transparent !important;
-  color: #f7f7f7 !important;
+  color: #75787a !important;
   cursor: pointer;
 }
 
 html.theme-dark .shortcut-2IihgTnv,
 html.theme-dark .shortcut-f5BaKrKq {
-  color: #737682 !important;
+  color: #75787a !important;
 }
 
 html.theme-dark .item-f5BaKrKq.interactive-f5BaKrKq {
@@ -98,7 +106,7 @@ html.theme-dark .wrap-3jbioG5e,
 }
 
 html.theme-dark .common-tooltip__body-36YLR71G {
-  background-color: #20243f !important;
+  background-color: #14161a !important;
 }
 html.theme-dark .common-tooltip__ear-holder-36YLR71G:after {
   display: none;
@@ -123,7 +131,7 @@ html.theme-dark .color-gray-xRobF0EE.variant-secondary-xRobF0EE:hover {
 }
 
 html.theme-dark .drawer-164vy-kj .smallTabletSectionTitle-2R6OKuTS {
-  color: #b2b5be !important;
+  color: #75787a !important;
 }
 html.theme-dark .drawer-164vy-kj .normal-eqcGT_ow {
   display: none;
@@ -135,7 +143,7 @@ html.theme-dark .drawer-164vy-kj {
 }
 
 html.theme-dark .summary-3UYGeClB {
-  color: #b2b5be !important;
+  color: #75787a !important;
   padding-top: 4px;
   margin-top: 0;
 }

@@ -7,16 +7,14 @@
 .Exchange-trigger-order-info,
 .Exchange-trigger-order-info a {
   color: rgba(255, 255, 255, 0.7);
-  border: 1px solid #23263b;
+  border: 1px solid #202325;
 }
 
 .Exchange-list-tab-container {
   display: grid;
   grid-template-columns: auto auto;
-  padding-left: 0.8rem;
-  padding-right: 0.8rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.05rem;
+  padding: 0;
+  margin: 20px 0;
 }
 
 .Exchange-should-show-position-lines {
@@ -53,7 +51,7 @@
 
 .Exchange-content {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 0.5fr auto;
   grid-gap: 1.5rem;
   padding: 3.1rem;
   padding-top: 0rem;
@@ -141,7 +139,7 @@
 .Exchange-leverage-slider {
   margin-top: 1.5rem;
   margin-bottom: 3.4rem;
-  padding: 0 0.8rem;
+  /* padding: 0 0.8rem; */
 }
 
 .Exchange-swap-leverage-options {
@@ -262,7 +260,7 @@
 }
 
 .ExchangeChart-main-price {
-  font-size: 1.7rem;
+  font-size: var(--font-base);
 }
 
 .ExchangeChart-title {
@@ -276,16 +274,25 @@
 }
 
 .ExchangeChart-info-label {
-  font-size: 1.25rem;
+  font-size: var(--font-base);
+  color: #848e9c;
   opacity: 0.7;
 }
 
 .ExchangeChart-top-inner {
+  height: 100%;
   display: grid;
-  grid-template-columns: auto auto auto auto auto 1fr;
-  grid-column-gap: 4.65rem;
+  grid-template-columns: auto auto auto auto auto;
+  grid-column-gap: 90px;
   align-items: center;
-  padding-left: 0.3rem;
+  /* padding-left: 0.3rem; */
+  padding: 0 15px;
+}
+
+.ExchangeChart-top-inner > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .ExchangeChart-dollar-sign {
@@ -309,7 +316,8 @@
 
 .ExchangeChart.tv .ExchangeChart-top {
   position: relative;
-  padding: 0.9rem 0.31rem;
+  /* padding: 0.9rem 0.31rem; */
+  height: 62px;
   z-index: 2;
 }
 
@@ -318,7 +326,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  top: 6.975rem;
+  top: 77px;
   z-index: 1;
 }
 .ExchangeChart-bottom-controls {
@@ -499,6 +507,9 @@ table.Exchange-list td {
   text-align: left;
   padding: 1.05rem;
   padding-left: 1.5rem;
+  font-size: var(--font-sm);
+  line-height: 11px;
+  color: var(--text-gray);
 }
 table.Exchange-list.Orders th,
 table.Exchange-list.Orders td {
@@ -507,7 +518,7 @@ table.Exchange-list.Orders td {
 }
 
 table.Exchange-list tr {
-  border-bottom: 1px solid #23263b;
+  border-bottom: 1px solid #202325;
 }
 
 table.Exchange-list tr:last-child {
@@ -521,20 +532,21 @@ table.Exchange-list tr:hover {
 
 table.Exchange-list tr.Exchange-list-header {
   background: none;
-  font-size: var(--font-md);
+  font-size: var(--font-sm);
+  height: 52px;
 }
 
-table.Exchange-list tr.Exchange-list-header th {
-  padding-top: 1.4rem;
-  padding-bottom: 1.4rem;
-}
+/* table.Exchange-list tr.Exchange-list-header th {
+  
+} */
 
 table.Exchange-list th {
   opacity: 0.7;
 }
 
 .Exchange-leverage-box {
-  margin-bottom: 1.05rem;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .Exchange-swap-box-info {
@@ -545,7 +557,11 @@ table.Exchange-list th {
   display: grid;
   grid-template-columns: auto auto;
   font-size: var(--font-sm);
-  margin-bottom: 0.465rem;
+  line-height: 10px;
+}
+
+.Exchange-info-row:not(:last-child) {
+  margin-bottom: 15px;
 }
 
 .Exchange-info-row.top-line {
@@ -590,22 +606,25 @@ table.Exchange-list th {
 }
 
 .Exchange-swap-box {
-  width: 41.85rem;
+  /* width: 41.85rem; */
+  /* width: 350px; */
+  min-width: 350px;
   display: grid;
   position: relative;
 }
 
 .Exchange-swap-market-box-title {
   font-size: var(--font-md);
-  margin-bottom: 1.25rem;
+  margin-bottom: 15px;
+  line-height: 15px;
 }
 
 .Exchange-swap-box-inner {
-  padding: 1.5rem;
+  padding: 15px;
 }
 
 .Exchange-swap-market-box {
-  padding: 1.5rem;
+  padding: 15px;
   margin-top: 1.25rem;
   padding-bottom: 1.5rem;
 }
@@ -637,16 +656,16 @@ table.Exchange-list th {
 }
 
 .Exchange-swap-box .Tab {
-  margin-bottom: 1.05rem;
+  margin: 15px 0 17px;
 }
 
 .Exchange-swap-section {
-  padding: 1.5rem;
-  margin-bottom: 1.05rem;
-  border-radius: 0.3rem;
-  background: linear-gradient(90deg, rgba(30, 34, 61, 0.9) 0%, rgba(38, 43, 71, 0.9) 100%);
-  box-shadow: inset 0px 0px 3rem 0.5rem rgba(255, 255, 255, 0.01);
-  outline: 1px solid transparent;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: var(--border-radius-base);
+  background: var(--dark-blue);
+  /* box-shadow: inset 0px 0px 3rem 0.5rem rgba(255, 255, 255, 0.01); */
+  /* outline: 1px solid transparent; */
 }
 
 .Exchange-swap-section:hover,
@@ -654,8 +673,12 @@ table.Exchange-list th {
   outline-color: #3a3f798f;
 }
 
+.Exchange-swap-box .Exchange-swap-option-tabs.Tab {
+  margin-top: 0;
+}
+
 .Exchange-swap-option-tabs.Tab.block .Tab-option {
-  padding: 1.05rem;
+  padding: 18px;
 }
 
 .Exchange-swap-order-type-tabs {
@@ -725,7 +748,7 @@ table.Exchange-list th {
 input.Exchange-swap-input {
   padding: 0;
   max-width: 100%;
-  font-size: var(--font-lg);
+  font-size: var(--font-base);
   width: 100%;
   padding-right: 2rem;
 }
@@ -752,16 +775,16 @@ input.Exchange-swap-input.small {
   display: block;
   transform: rotate(90deg);
   font-size: 2rem;
-  opacity: 0.8;
+  /* opacity: 0.8; */
 }
 
 .Exchange-swap-ball {
   position: absolute;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 30px;
+  height: 30px;
   left: 50%;
-  margin-left: -1.7825rem;
-  top: -2rem;
+  transform: translateX(-50%);
+  top: -20px;
   border-radius: 3.1rem;
   cursor: pointer;
   user-select: none;
@@ -771,7 +794,7 @@ input.Exchange-swap-input.small {
   align-items: center;
   border: none;
   color: white;
-  opacity: 0.8;
+  /* opacity: 0.8; */
 }
 
 .Exchange-swap-ball:hover {
@@ -934,11 +957,11 @@ table.Exchange-list-small td {
   color: #56dba8;
 }
 
-@media (max-width: 1500px) {
+/* @media (max-width: 1500px) {
   .Exchange-swap-box {
     width: 38.75rem;
   }
-}
+} */
 
 @media (max-width: 1300px) {
   .Exchange-list.large {

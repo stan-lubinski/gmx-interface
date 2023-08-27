@@ -1,10 +1,9 @@
-import React from "react";
 import { Menu } from "@headlessui/react";
-import { FaChevronDown } from "react-icons/fa";
 import cx from "classnames";
-import "./ChartTokenSelector.css";
-import { LONG, SHORT, SWAP } from "lib/legacy";
 import { getTokens, getWhitelistedTokens } from "config/tokens";
+import { LONG, SHORT, SWAP } from "lib/legacy";
+import { FaChevronDown } from "react-icons/fa";
+import "./ChartTokenSelector.css";
 
 export default function ChartTokenSelector(props) {
   const { chainId, selectedToken, onSelectToken, swapOption } = props;
@@ -34,7 +33,7 @@ export default function ChartTokenSelector(props) {
   return (
     <Menu>
       <Menu.Button as="div" disabled={isSwap}>
-        <button className={cx("App-cta small transparent chart-token-selector", { "default-cursor": isSwap })}>
+        <button className={cx("App-cta small chart-token-selector", { "default-cursor": isSwap })}>
           <span className="chart-token-selector--current">{value.symbol} / USD</span>
           {!isSwap && <FaChevronDown />}
         </button>

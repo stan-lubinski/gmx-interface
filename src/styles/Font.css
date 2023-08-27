@@ -1,4 +1,12 @@
 @font-face {
+  font-family: "Freecam";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/freecam/freecam-v2.ttf");
+  /* src: local(""), url("fonts/freecam/freecam-v2.ttf") format("embedded-opentype"); */
+}
+
+@font-face {
   font-family: "Relative";
   font-style: normal;
   font-weight: 400;

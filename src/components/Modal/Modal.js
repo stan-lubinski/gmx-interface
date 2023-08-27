@@ -1,9 +1,9 @@
-import "./Modal.css";
-import React, { useRef, useEffect } from "react";
 import cx from "classnames";
-import { motion, AnimatePresence } from "framer-motion";
-import { RemoveScroll } from "react-remove-scroll";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { MdClose } from "react-icons/md";
+import { RemoveScroll } from "react-remove-scroll";
+import "./Modal.css";
 
 export default function Modal(props) {
   const { isVisible, setIsVisible, className, zIndex, onAfterOpen } = props;
@@ -59,7 +59,7 @@ export default function Modal(props) {
               </div>
               {props.headerContent && props.headerContent()}
             </div>
-            <div className="divider" />
+            {/* <div className="divider" /> */}
             <RemoveScroll>
               <div className={cx("Modal-body")} ref={modalRef}>
                 {props.children}

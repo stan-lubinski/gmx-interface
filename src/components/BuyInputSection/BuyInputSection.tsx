@@ -1,7 +1,7 @@
-import "./BuyInputSection.scss";
-import React, { useRef, ReactNode, ChangeEvent } from "react";
-import cx from "classnames";
 import { Trans } from "@lingui/macro";
+import cx from "classnames";
+import { ChangeEvent, ReactNode, useRef } from "react";
+import "./BuyInputSection.scss";
 
 type Props = {
   topLeftLabel: string;
@@ -43,7 +43,7 @@ export default function BuyInputSection({
       <div className="buy-input-top-row">
         <div className="text-gray">
           {topLeftLabel}
-          {balance && `: ${balance}`}
+          {/* {balance && `: ${balance}`} */}
         </div>
         <div className={cx("align-right", { clickable: onClickTopRightLabel })} onClick={onClickTopRightLabel}>
           <span className="text-gray">{topRightLabel}</span>
@@ -71,7 +71,7 @@ export default function BuyInputSection({
             </button>
           )}
         </div>
-        <div className="PositionEditor-token-symbol">{children}</div>
+        {/* <div className="PositionEditor-token-symbol">{children}</div> */}
       </div>
     </div>
   );

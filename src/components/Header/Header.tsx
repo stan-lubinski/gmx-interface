@@ -1,18 +1,18 @@
-import React, { ReactNode, useEffect, useState } from "react";
 import cx from "classnames";
+import React, { ReactNode, useEffect, useState } from "react";
 
-import { AppHeaderUser } from "./AppHeaderUser";
 import { AppHeaderLinks } from "./AppHeaderLinks";
+import { AppHeaderUser } from "./AppHeaderUser";
 
+import { AnimatePresence as FramerAnimatePresence, motion } from "framer-motion";
 import logoImg from "img/logo_GMX.svg";
 import logoSmallImg from "img/logo_GMX_small.svg";
-import { RiMenuLine } from "react-icons/ri";
 import { FaTimes } from "react-icons/fa";
-import { AnimatePresence as FramerAnimatePresence, motion } from "framer-motion";
+import { RiMenuLine } from "react-icons/ri";
 
-import "./Header.css";
-import { Link } from "react-router-dom";
 import { isHomeSite } from "lib/legacy";
+import { Link } from "react-router-dom";
+import "./Header.css";
 import { HomeHeaderLinks } from "./HomeHeaderLinks";
 
 // Fix framer-motion old React FC type (solved in react 18)
@@ -96,8 +96,11 @@ export function Header({
         <div className="App-header large">
           <div className="App-header-container-left">
             <Link className="App-header-link-main" to="/">
-              <img src={logoImg} className="big" alt="GMX Logo" />
-              <img src={logoSmallImg} className="small" alt="GMX Logo" />
+              {/* <img src={logoImg} className="big" alt="GMX Logo" />
+              <img src={logoSmallImg} className="small" alt="GMX Logo" /> */}
+              <h1>
+                TRADE <span className="accent">FX</span>
+              </h1>
             </Link>
             {isHomeSite() ? (
               <HomeHeaderLinks redirectPopupTimestamp={redirectPopupTimestamp} showRedirectModal={showRedirectModal} />

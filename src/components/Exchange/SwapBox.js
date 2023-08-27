@@ -1,51 +1,51 @@
+import { Trans, t } from "@lingui/macro";
 import React, { useEffect, useMemo, useState } from "react";
 import Tooltip from "../Tooltip/Tooltip";
-import { t, Trans } from "@lingui/macro";
 import "./SwapBox.scss";
 
-import useSWR from "swr";
 import { ethers } from "ethers";
+import useSWR from "swr";
 
-import { IoMdSwap } from "react-icons/io";
 import { BsArrowRight } from "react-icons/bs";
+import { IoMdSwap } from "react-icons/io";
 
+import { ARBITRUM, IS_NETWORK_DISABLED, getChainName, getConstant, isSupportedChain } from "config/chains";
+import { getContract } from "config/contracts";
+import * as Api from "domain/legacy";
 import {
-  adjustForDecimals,
   BASIS_POINTS_DIVISOR,
-  calculatePositionDelta,
   DEFAULT_HIGHER_SLIPPAGE_AMOUNT,
   DUST_BNB,
-  getExchangeRate,
-  getExchangeRateDisplay,
-  getNextFromAmount,
-  getNextToAmount,
-  getPositionKey,
-  isTriggerRatioInverted,
   LEVERAGE_ORDER_OPTIONS,
   LIMIT,
   LONG,
   MARGIN_FEE_BASIS_POINTS,
   MARKET,
+  MAX_ALLOWED_LEVERAGE,
   PRECISION,
   SHORT,
   STOP,
   SWAP,
   SWAP_OPTIONS,
   SWAP_ORDER_OPTIONS,
-  USD_DECIMALS,
   USDG_ADDRESS,
   USDG_DECIMALS,
-  MAX_ALLOWED_LEVERAGE,
+  USD_DECIMALS,
+  adjustForDecimals,
+  calculatePositionDelta,
+  getExchangeRate,
+  getExchangeRateDisplay,
+  getNextFromAmount,
+  getNextToAmount,
+  getPositionKey,
+  isTriggerRatioInverted,
 } from "lib/legacy";
-import { ARBITRUM, getChainName, getConstant, IS_NETWORK_DISABLED, isSupportedChain } from "config/chains";
-import * as Api from "domain/legacy";
-import { getContract } from "config/contracts";
 
 import Tab from "../Tab/Tab";
-import TokenSelector from "./TokenSelector";
-import ExchangeInfoRow from "./ExchangeInfoRow";
 import ConfirmationBox from "./ConfirmationBox";
+import ExchangeInfoRow from "./ExchangeInfoRow";
 import OrdersToa from "./OrdersToa";
+import TokenSelector from "./TokenSelector";
 
 import PositionRouter from "abis/PositionRouter.json";
 import Router from "abis/Router.json";
@@ -56,33 +56,31 @@ import longImg from "img/long.svg";
 import shortImg from "img/short.svg";
 import swapImg from "img/swap.svg";
 
+import Button from "components/Button/Button";
+import BuyInputSection from "components/BuyInputSection/BuyInputSection";
+import ExternalLink from "components/ExternalLink/ExternalLink";
+import { get1InchSwapUrl } from "config/links";
+import { getToken, getTokenBySymbol, getTokens, getWhitelistedTokens } from "config/tokens";
 import { useUserReferralCode } from "domain/referrals";
-import NoLiquidityErrorModal from "./NoLiquidityErrorModal";
-import StatsTooltipRow from "../StatsTooltip/StatsTooltipRow";
-import { callContract, contractFetcher } from "lib/contracts";
 import {
   approveTokens,
   getMostAbundantStableToken,
   replaceNativeTokenAddress,
   shouldRaiseGasError,
 } from "domain/tokens";
-import { useLocalStorageByChainId, useLocalStorageSerializeKey } from "lib/localStorage";
-import { helperToast } from "lib/helperToast";
 import { getTokenInfo, getUsd } from "domain/tokens/utils";
-import { usePrevious } from "lib/usePrevious";
+import { callContract, contractFetcher } from "lib/contracts";
+import { helperToast } from "lib/helperToast";
+import { useLocalStorageByChainId, useLocalStorageSerializeKey } from "lib/localStorage";
 import { bigNumberify, expandDecimals, formatAmount, formatAmountFree, parseValue } from "lib/numbers";
-import { getToken, getTokenBySymbol, getTokens, getWhitelistedTokens } from "config/tokens";
-import ExternalLink from "components/ExternalLink/ExternalLink";
-import { ErrorCode, ErrorDisplayType } from "./constants";
-import Button from "components/Button/Button";
-import UsefulLinks from "./UsefulLinks";
-import { get1InchSwapUrl } from "config/links";
-import getLiquidationPrice from "lib/positions/getLiquidationPrice";
 import { getLeverage } from "lib/positions/getLeverage";
-import ToggleSwitch from "components/ToggleSwitch/ToggleSwitch";
-import LeverageSlider from "./LeverageSlider";
-import BuyInputSection from "components/BuyInputSection/BuyInputSection";
+import getLiquidationPrice from "lib/positions/getLiquidationPrice";
+import { usePrevious } from "lib/usePrevious";
+import StatsTooltipRow from "../StatsTooltip/StatsTooltipRow";
 import FeesTooltip from "./FeesTooltip";
+import LeverageSlider from "./LeverageSlider";
+import NoLiquidityErrorModal from "./NoLiquidityErrorModal";
+import { ErrorCode, ErrorDisplayType } from "./constants";
 
 const SWAP_ICONS = {
   [LONG]: longImg,
@@ -1951,13 +1949,13 @@ export default function SwapBox(props) {
               </div>
               <BuyInputSection
                 topLeftLabel={getToLabel()}
-                topRightLabel={isSwap ? t`Balance` : t`Leverage`}
+                // topRightLabel={isSwap ? t`Balance` : t`Leverage`}
                 balance={toUsdMax && `${formatAmount(toUsdMax, USD_DECIMALS, 2, true)} USD`}
-                tokenBalance={
-                  isSwap
-                    ? formatAmount(toBalance, toToken.decimals, 4, true)
-                    : `${parseFloat(leverageOption).toFixed(2)}x`
-                }
+                // tokenBalance={
+                //   isSwap
+                //     ? formatAmount(toBalance, toToken.decimals, 4, true)
+                //     : `${parseFloat(leverageOption).toFixed(2)}x`
+                // }
                 showMaxButton={false}
                 inputValue={toValue}
                 onInputValueChange={onToValueChange}
@@ -2041,13 +2039,14 @@ export default function SwapBox(props) {
           )}
           {(isLong || isShort) && !isStopOrder && (
             <div className="Exchange-leverage-box">
-              <ToggleSwitch
+              <span>Leverage slider: {parseFloat(leverageOption).toFixed(2)}x</span>
+
+              {/* <ToggleSwitch
                 className="Exchange-leverage-toggle-wrapper"
                 isChecked={isLeverageSliderEnabled}
                 setIsChecked={setIsLeverageSliderEnabled}
               >
-                <span className="muted">Leverage slider</span>
-              </ToggleSwitch>
+              </ToggleSwitch> */}
               {isLeverageSliderEnabled && (
                 <LeverageSlider isLong={isLong} leverageOption={leverageOption} setLeverageOption={setLeverageOption} />
               )}
@@ -2190,7 +2189,7 @@ export default function SwapBox(props) {
             <div className="Exchange-swap-market-box-title">
               <Trans>Swap</Trans>
             </div>
-            <div className="App-card-divider"></div>
+            {/* <div className="App-card-divider"></div> */}
             <div className="Exchange-info-row">
               <div className="Exchange-info-label">
                 <Trans>{fromToken.symbol} Price</Trans>
@@ -2251,7 +2250,7 @@ export default function SwapBox(props) {
             <div className="Exchange-swap-market-box-title">
               {isLong ? t`Long` : t`Short`}&nbsp;{toToken.symbol}
             </div>
-            <div className="App-card-divider" />
+            {/* <div className="App-card-divider" /> */}
             <div className="Exchange-info-row">
               <div className="Exchange-info-label">
                 <Trans>Entry Price</Trans>
@@ -2381,7 +2380,7 @@ export default function SwapBox(props) {
             )}
           </div>
         )}
-        <UsefulLinks className="Useful-links-swapbox" />
+        {/* <UsefulLinks className="Useful-links-swapbox" /> */}
       </div>
       <NoLiquidityErrorModal
         chainId={chainId}

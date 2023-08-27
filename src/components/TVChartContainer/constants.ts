@@ -1,8 +1,8 @@
 import { ARBITRUM, AVALANCHE } from "config/chains";
 import { formatTVDate, formatTVTime } from "lib/dates";
 
-const RED = "#fa3c58";
-const GREEN = "#0ecc83";
+const RED = "#EB5757";
+const GREEN = "#27AE60";
 export const DEFAULT_PERIOD = "4h";
 
 const chartStyleOverrides = ["candleStyle", "hollowCandleStyle", "haStyle"].reduce((acc, cv) => {
@@ -18,9 +18,9 @@ const chartStyleOverrides = ["candleStyle", "hollowCandleStyle", "haStyle"].redu
 }, {});
 
 const chartOverrides = {
-  "paneProperties.background": "#16182e",
-  "paneProperties.backgroundGradientStartColor": "#16182e",
-  "paneProperties.backgroundGradientEndColor": "#16182e",
+  "paneProperties.background": "#14161A",
+  "paneProperties.backgroundGradientStartColor": "#14161A",
+  "paneProperties.backgroundGradientEndColor": "#14161A",
   "paneProperties.backgroundType": "solid",
   "paneProperties.vertGridProperties.color": "rgba(35, 38, 59, 1)",
   "paneProperties.vertGridProperties.style": 2,
@@ -28,7 +28,7 @@ const chartOverrides = {
   "paneProperties.horzGridProperties.style": 2,
   "mainSeriesProperties.priceLineColor": "#3a3e5e",
   "scalesProperties.textColor": "#fff",
-  "scalesProperties.lineColor": "#16182e",
+  "scalesProperties.lineColor": "#14161A",
   ...chartStyleOverrides,
 };
 
@@ -67,12 +67,13 @@ export const defaultChartProps = {
   userId: "public_user_id",
   fullscreen: false,
   autosize: true,
+  custom_font_family: "'Freecam', sans-serif",
   header_widget_dom_node: false,
   overrides: chartOverrides,
   enabled_features: enabledFeatures,
   disabled_features: disabledFeatures,
   custom_css_url: "/tradingview-chart.css",
-  loading_screen: { backgroundColor: "#16182e", foregroundColor: "#2962ff" },
+  loading_screen: { backgroundColor: "#14161A", foregroundColor: "#14161A" },
   favorites: {
     intervals: ["5", "15", "60", "240", "1D"],
   },

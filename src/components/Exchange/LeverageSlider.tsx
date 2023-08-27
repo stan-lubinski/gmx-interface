@@ -1,6 +1,6 @@
-import Slider, { SliderTooltip } from "rc-slider";
 import cx from "classnames";
 import { BASIS_POINTS_DIVISOR, MAX_ALLOWED_LEVERAGE } from "lib/legacy";
+import Slider, { SliderTooltip } from "rc-slider";
 import "rc-slider/assets/index.css";
 
 const leverageMarks = {
@@ -13,8 +13,8 @@ const leverageMarks = {
   30: "30x",
   35: "35x",
   40: "40x",
-  45: "45x",
-  50: "50x",
+  // 45: "45x",
+  // 50: "50x",
 };
 
 const leverageSliderHandle = (props) => {

@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
-import { BigNumber, ethers } from "ethers";
 import { getContract } from "config/contracts";
+import { BigNumber, ethers } from "ethers";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
 
-import OrderBookReader from "abis/OrderBookReader.json";
 import OrderBook from "abis/OrderBook.json";
+import OrderBookReader from "abis/OrderBookReader.json";
 
-import { CHAIN_ID, ETH_MAINNET, getExplorerUrl, getRpcUrl } from "config/chains";
+import { t } from "@lingui/macro";
 import { getServerBaseUrl } from "config/backend";
+import { CHAIN_ID, ETH_MAINNET, getExplorerUrl, getRpcUrl } from "config/chains";
+import { isLocal } from "config/env";
+import { isValidToken } from "config/tokens";
 import { getMostAbundantStableToken } from "domain/tokens";
 import { getTokenInfo } from "domain/tokens/utils";
-import { getProvider } from "./rpc";
-import { bigNumberify, expandDecimals, formatAmount } from "./numbers";
-import { isValidToken } from "config/tokens";
 import { useChainId } from "./chains";
 import { isValidTimestamp } from "./dates";
-import { t } from "@lingui/macro";
-import { isLocal } from "config/env";
+import { bigNumberify, expandDecimals, formatAmount } from "./numbers";
+import { getProvider } from "./rpc";
 
 const { AddressZero } = ethers.constants;
 
@@ -30,7 +30,8 @@ export const USDG_ADDRESS = getContract(CHAIN_ID, "USDG");
 
 export const BASIS_POINTS_DIVISOR = 10000;
 export const MAX_LEVERAGE = 100 * BASIS_POINTS_DIVISOR;
-export const MAX_ALLOWED_LEVERAGE = 50 * BASIS_POINTS_DIVISOR;
+export const MAX_ALLOWED_LEVERAGE = 40 * BASIS_POINTS_DIVISOR;
+// export const MAX_ALLOWED_LEVERAGE = 50 * BASIS_POINTS_DIVISOR;
 
 export const MAX_PRICE_DEVIATION_BASIS_POINTS = 750;
 export const DEFAULT_GAS_LIMIT = 1 * 1000 * 1000;
@@ -69,9 +70,12 @@ export const SHORT = "Short";
 export const MARKET = "Market";
 export const LIMIT = "Limit";
 export const STOP = "Stop";
-export const LEVERAGE_ORDER_OPTIONS = [MARKET, LIMIT, STOP];
-export const SWAP_ORDER_OPTIONS = [MARKET, LIMIT];
-export const SWAP_OPTIONS = [LONG, SHORT, SWAP];
+export const LEVERAGE_ORDER_OPTIONS = [MARKET];
+export const SWAP_ORDER_OPTIONS = [MARKET];
+// export const LEVERAGE_ORDER_OPTIONS = [MARKET, LIMIT, STOP];
+// export const SWAP_ORDER_OPTIONS = [MARKET, LIMIT];
+export const SWAP_OPTIONS = [LONG, SHORT];
+// export const SWAP_OPTIONS = [LONG, SHORT, SWAP];
 export const DEFAULT_SLIPPAGE_AMOUNT = 30;
 export const DEFAULT_HIGHER_SLIPPAGE_AMOUNT = 100;
 

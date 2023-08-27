@@ -6,8 +6,8 @@ body,
   margin: 0;
   padding: 0;
   color: white;
-  font-size: 10px;
-  background-color: #101124;
+  font-size: 12px;
+  background-color: var(--dark-1);
 }
 
 body {
@@ -25,12 +25,13 @@ code {
 
 * {
   box-sizing: border-box;
-  font-family: "Relative", sans-serif;
+  font-family: "Freecam", sans-serif;
   letter-spacing: 0.05rem;
+  line-height: 13px;
 }
 
 input {
-  font-family: "RelativeNumber";
+  font-family: "Freecam";
 }
 
 /* Track */
@@ -51,23 +52,25 @@ input {
 }
 
 :root {
-  --dark-blue: #17182c;
-  --dark-blue-bg: #16182e;
+  --dark-1: #0e0f12;
+  --dark-blue: #1b1e22;
+  --dark-blue-bg: #14161a;
   --dark-blue-accent: #a0a3c4;
-  --primary-btn-bg: #2d42fc;
+  --primary-btn-bg: #0094ff;
   --primary-btn-hover: #4d5ffa;
   --primary-btn-active: #5264fc;
   --dark-blue-hover: #808aff14;
   --dark-blue-border: #ffffff29;
   --dark-blue-active: #818cef33;
-  --text-gray: rgba(255, 255, 255, 0.7);
+  --text-gray: #75787a;
   --avax-red: #e84143;
   --arbitrum-blue: #28a0f0;
   --border-radius-sm: 0.4rem;
+  --border-radius-base: 12px;
   --error-red: #fa3c58;
-  --font-sm: 1.4rem;
-  --font-base: 1.5rem;
-  --font-md: 1.6rem;
+  --font-sm: 10px;
+  --font-base: 12px;
+  --font-md: 14px;
   --font-lg: 2.4rem;
   --font-xl: 3.4rem;
 }
@@ -142,7 +145,7 @@ td {
 }
 
 .muted {
-  opacity: 0.7;
+  opacity: 0.3;
 }
 
 .strong {
@@ -399,11 +402,11 @@ button.btn-link:hover .logout-icon {
 }
 
 .page-layout {
-  min-height: calc(100vh - 62px);
+  min-height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
   padding-bottom: calc(4.65rem + 20rem);
-  padding-top: 4.65rem;
+  padding-top: 15px;
 }
 
 .d-flex {

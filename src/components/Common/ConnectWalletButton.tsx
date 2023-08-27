@@ -10,9 +10,12 @@ type Props = {
 
 export default function ConnectWalletButton({ imgSrc, children, onClick, className }: Props) {
   return (
-    <button className="connect-wallet-btn" onClick={onClick}>
-      {imgSrc && <img className="btn-icon" src={imgSrc} alt="Connect Wallet" />}
+    <button className="button primary-action sm" onClick={onClick}>
       <span className="btn-label">{children}</span>
     </button>
+    // <button className="connect-wallet-btn" onClick={onClick}>
+    //   {imgSrc && <img className="btn-icon" src={imgSrc} alt="Connect Wallet" />}
+    //   <span className="btn-label">{children}</span>
+    // </button>
   );
 }

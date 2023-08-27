@@ -1,9 +1,9 @@
-import { AbstractConnector } from "@web3-react/abstract-connector";
-import { ConnectorUpdate } from "@web3-react/types";
 import {
   EthereumProvider,
   EthereumProviderOptions,
 } from "@walletconnect/ethereum-provider/dist/types/EthereumProvider";
+import { AbstractConnector } from "@web3-react/abstract-connector";
+import { ConnectorUpdate } from "@web3-react/types";
 
 export const URI_AVAILABLE = "URI_AVAILABLE";
 
@@ -45,7 +45,7 @@ export class WalletConnectConnector extends AbstractConnector {
         enableExplorer: true,
         themeMode: "dark",
         themeVariables: {
-          "--wcm-font-family": '"Relative",sans-serif',
+          "--wcm-font-family": '"Freecam",sans-serif',
           "--wcm-z-index": "1100",
         },
       },
